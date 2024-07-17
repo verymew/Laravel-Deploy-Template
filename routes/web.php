@@ -2,8 +2,13 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PostController;
 
 Route::get('/', function () {
+    return view('home');
+});
+
+Route::get('/index', function () {
     return view('welcome');
 });
 
@@ -11,6 +16,16 @@ Route::get('/post', function () {
     return view('postagem');
 });
 
+
+Route::get('/projects', function () {
+    return view('projects');
+});
+
+Route::get('/projects', [PostController::class, 'returnProjects']);
+
+Route::middleware(['auth'])->group(function () {
+    Route::post('/post/newpost', [PostController::class, 'newPost'])->name('profile.newproject');
+});
 
 Route::get('/dashboard', function () {
     return view('dashboard');
