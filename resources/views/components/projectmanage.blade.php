@@ -33,33 +33,11 @@
                 {{ $projects->resume }}
             </div>
             <div class="botoeslistofpost">
-                <a href="{{ route('home') }}" class="btn btn-warning" style="padding: 10px 10px;">Editar</a>
-                <button onclick="deletePost({{ $projects->id }})" style="padding: 10px 10px" type="button" class="btn btn-danger">Excluir</button>
+                <a href="{{ route('project.seePost', ['postid' => $projects->id]) }}" class="btn btn-warning" style="padding: 10px 10px;">Editar</a>
+                <x-delete-button postid='{{ $projects->id }}' />
             </div>
             </li>
         </ol>
     </div>
 @endforeach
 
-<script>
-
-        function deletePost(postId) {
-        if (confirm('Tem certeza que deseja excluir este post?')) {
-            $.ajax({
-                url: '/post/deletepost/' + postId,
-                type: 'DELETE',
-                headers: {
-                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
-                },
-                success: function(response) {
-                    alert('Post excluído com sucesso!');
-                    location.reload();
-                },
-                error: function(xhr) {
-                    alert('Erro ao excluir o post. Por favor, tente novamente.');
-                }
-            });
-        }
-    }
-
-</script>

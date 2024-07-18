@@ -21,7 +21,30 @@
 </div>
 
 <div>
-    <h1>OIiiiiii </h1>
+    <section class="ftco-section services-section bg-light">
+        <div class="container">
+            <div class="row justify-content-center mb-5">
+            <div class="col-md-8 text-center heading-section ftco-animate">
+              <h2 class="mb-3">Projetos</h2>
+            </div>
+          </div>
+          <div class="row">
+            @foreach ($projects as $projects)
+
+            <div class="col-lg-4 col-md-6 d-flex align-self-stretch ftco-animate">
+              <div class="media block-6 services d-flex">
+                <div class="media-body pl-4">
+                  <h3 class="heading">{{ $projects->title }}</h3>
+                  <p>{{ $projects->resume }}</p>
+                  <p><a href="" class="btn btn-secondary px-4 py-3">Ver mais</a></p>
+                </div>
+              </div>
+            </div>
+
+            @endforeach
+          </div>
+        </div>
+    </section>
 </div>
 
 @endsection

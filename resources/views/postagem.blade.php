@@ -36,6 +36,7 @@
         </ul>
     </div>
 @endif
+
 <div class="form-div" style="width: 100%; display: flex; justify-content: center;">
     <form method="POST" action="{{ route('profile.newproject') }}" enctype="multipart/form-data" style="margin: 20px 20px;">
       @csrf

@@ -1,10 +1,10 @@
-<button onclick="deletePost({{ $projects->id }})" style="padding: 10px 10px" type="button" class="btn btn-danger">Excluir</button>
+<button onclick="deletePost({{ $postid }})" style="padding: 10px 10px" type="button" class="btn btn-danger">Excluir</button>
 
 <script>
     function deletePost(postId) {
         if (confirm('Tem certeza que deseja excluir este post?')) {
             $.ajax({
-                url: '/post/deletepost' + postId,
+                url: '/post/deletepost/' + postId,
                 type: 'DELETE',
                 headers: {
                     'X-CSRF-TOKEN': '{{ csrf_token() }}'

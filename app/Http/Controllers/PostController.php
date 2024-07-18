@@ -38,9 +38,11 @@ class PostController extends Controller
         return redirect('/post')->with('success', 'Projeto criado com sucesso!');
     }
 
+    //Rotas públicas
+
     public function returnIndex()
     {
-        $projects = '';
+        $projects = Post::limit(3)->get();
         $activities = '';
 
         return view('home', compact('projects', 'activities'));
@@ -52,6 +54,8 @@ class PostController extends Controller
 
         return view('projects', compact('projects'));
     }
+
+    //
 
     public function editPosts(): View
     {
@@ -70,13 +74,46 @@ class PostController extends Controller
 
     public function updatePostPage($postid)
     {
-        $findpost = Post::find($postid);
+        $projects = Post::find($postid);
+        $userid = Auth::id();
 
-        return view('updatepost', compact('findpost'));
+        if($projects->user_id != $userid)
+        {
+            return response()->json(['message' => 'Acesso NEGADO!']);
+        }
+
+        return view('updatepost', compact('projects'));
     }
 
-    public function updatePost($postid)
+    public function updatePost(Request $request)
     {
+        $request->validate([
+            'projname' => 'required|string|max:255',
+            'projcontent' => 'required|string',
+            'projresume' =>'required|string|max: 100',
+            'image' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+        ]);
+
+        $postid = $request->input('projeto_id');
         $findpost = Post::find($postid);
+        $userid = Auth::id();
+
+        if($findpost->user_id != $userid)
+        {
+            return response()->json(['message' => 'Acesso NEGADO!']);
+        }
+
+        $findpost->title = $request->input('projname');
+        $findpost->content = $request->input('projcontent');
+        $findpost->resume = $request->input('projresume');
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('images', 'public');
+            $findpost->image_path = $imagePath;
+        }
+
+        $findpost->save();
+
+        return redirect('/post')->with('success', 'Projeto atualizado com sucesso!');
+
     }
 }

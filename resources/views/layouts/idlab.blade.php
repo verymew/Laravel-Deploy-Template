@@ -27,7 +27,7 @@
           <li class="nav-item"><a href="leadership.html" class="nav-link">Quem somos</a></li>
           <li class="nav-item"><a class="nav-link" href="{{ route('projects') }}">Projetos</a></li>
           <li class="nav-item active"><a href="{{ route('home') }}" class="nav-link">Início</a></li>
-          <li class="nav-item cta"><a href="about.html" class="nav-link"><span>Sobre o Laboratório</span></a></li>
+          <li class="nav-item cta"><a href="{{ route('about') }}" class="nav-link"><span>Sobre o Laboratório</span></a></li>
         </ul>
       </div>
     </div>

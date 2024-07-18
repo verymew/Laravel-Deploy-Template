@@ -4,26 +4,31 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 
-Route::get('/', function () {
-    return view('home');
-})->name('home');
 
 Route::get('/index', function () {
     return view('welcome');
 });
 
-Route::get('/post', function () {
-    return view('postagem');
-});
+//páginas publicas
+Route::get('/projects', [PostController::class, 'returnProjects'])->name('projects');
+Route::get('/about', function () { return view('about'); } )->name('about');
+Route::get('/', [PostController::class, 'returnIndex'])->name('home');
+
 
 //Controlador de posts
-Route::get('/editposts', [PostController::class, 'editPosts'])->middleware('auth');
-Route::get('/projects', [PostController::class, 'returnProjects'])->name('projects');
 Route::middleware(['auth'])->group(function () {
+    //get
+    Route::get('/post/editposts', [PostController::class, 'editPosts']);
+    Route::get('/updatepost/{postid}', [PostController::class, 'updatePostPage'])->name('project.seePost');
+    Route::get('/post', function () {
+        return view('postagem');
+    });
+    //post
     Route::post('/post/newpost', [PostController::class, 'newPost'])->name('profile.newproject');
+    //delete
     Route::delete('/post/deletepost/{postid}', [PostController::class, 'deletePost']);
-    Route::get('/updatepost/{postid}', [PostController::class, 'updatePostPage']);
-
+    //put
+    Route::put('/updatepost/put',[PostController::class, 'updatePost'])->name('project.updatePost');
 });
 
 
