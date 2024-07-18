@@ -67,4 +67,16 @@ class PostController extends Controller
 
         return response()->json(['message' => 'Postagem excluída com sucesso!'], 200);
     }
+
+    public function updatePostPage($postid)
+    {
+        $findpost = Post::find($postid);
+
+        return view('updatepost', compact('findpost'));
+    }
+
+    public function updatePost($postid)
+    {
+        $findpost = Post::find($postid);
+    }
 }

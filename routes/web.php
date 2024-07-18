@@ -6,7 +6,7 @@ use App\Http\Controllers\PostController;
 
 Route::get('/', function () {
     return view('home');
-});
+})->name('home');
 
 Route::get('/index', function () {
     return view('welcome');
@@ -18,10 +18,12 @@ Route::get('/post', function () {
 
 //Controlador de posts
 Route::get('/editposts', [PostController::class, 'editPosts'])->middleware('auth');
-Route::get('/projects', [PostController::class, 'returnProjects']);
+Route::get('/projects', [PostController::class, 'returnProjects'])->name('projects');
 Route::middleware(['auth'])->group(function () {
     Route::post('/post/newpost', [PostController::class, 'newPost'])->name('profile.newproject');
     Route::delete('/post/deletepost/{postid}', [PostController::class, 'deletePost']);
+    Route::get('/updatepost/{postid}', [PostController::class, 'updatePostPage']);
+
 });
 
 

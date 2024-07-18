@@ -7,7 +7,6 @@
         display: flex;
         justify-content: center;
     }
-
     .listofposts #listinside
     {
         width: 600px;
@@ -23,8 +22,6 @@
             width: 100%;
         }
     }
-
-
 </style>
 
 @foreach ($projects as $projects)
@@ -36,7 +33,7 @@
                 {{ $projects->resume }}
             </div>
             <div class="botoeslistofpost">
-                <button style="padding: 10px 10px" type="button" class="btn btn-warning">Editar</button>
+                <a href="{{ route('home') }}" class="btn btn-warning" style="padding: 10px 10px;">Editar</a>
                 <button onclick="deletePost({{ $projects->id }})" style="padding: 10px 10px" type="button" class="btn btn-danger">Excluir</button>
             </div>
             </li>
@@ -45,6 +42,7 @@
 @endforeach
 
 <script>
+
         function deletePost(postId) {
         if (confirm('Tem certeza que deseja excluir este post?')) {
             $.ajax({
@@ -63,4 +61,5 @@
             });
         }
     }
+
 </script>
