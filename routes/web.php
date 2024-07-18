@@ -18,7 +18,7 @@ Route::get('/', [PostController::class, 'returnIndex'])->name('home');
 //Controlador de posts
 Route::middleware(['auth'])->group(function () {
     //get
-    Route::get('/post/editposts', [PostController::class, 'editPosts']);
+    Route::get('/post/editposts', [PostController::class, 'editPosts'])->name('project.editPosts');
     Route::get('/updatepost/{postid}', [PostController::class, 'updatePostPage'])->name('project.seePost');
     Route::get('/post', function () {
         return view('postagem');
