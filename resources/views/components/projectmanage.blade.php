@@ -24,7 +24,8 @@
     }
 </style>
 
-@foreach ($projects as $projects)
+@if ($projects)
+    @foreach ($projects as $projects)
     <div class="listofposts">
         <ol id="listinside" class="list-group list-group-numbered">
             <li class="list-group-item d-flex justify-content-between align-items-start">
@@ -39,5 +40,6 @@
             </li>
         </ol>
     </div>
-@endforeach
+    @endforeach
+@endif
 
