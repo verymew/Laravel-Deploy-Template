@@ -15,3 +15,8 @@
         </div>
     </div>
 </x-app-layout>
+
+<div class="profile-options">
+
+
+</div>

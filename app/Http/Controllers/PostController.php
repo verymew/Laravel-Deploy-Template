@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use App\Models\User;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
@@ -34,7 +35,7 @@ class PostController extends Controller
 
         $user->posts()->save($post);
 
-        return response()->json(['message' => 'Postagem criada com sucesso!'], 201);
+        return redirect('/post')->with('success', 'Projeto criado com sucesso!');
     }
 
     public function returnIndex()
@@ -47,7 +48,23 @@ class PostController extends Controller
 
     public function returnProjects()
     {
-        $projects = '';
+        $projects = Post::all();
+
         return view('projects', compact('projects'));
+    }
+
+    public function editPosts(): View
+    {
+        $projects = Post::all();
+
+        return view('editpost', compact('projects'));
+    }
+
+    public function deletePost($postid)
+    {
+        $findpost = Post::find($postid);
+        $findpost->delete();
+
+        return response()->json(['message' => 'Postagem excluída com sucesso!'], 200);
     }
 }

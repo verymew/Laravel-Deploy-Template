@@ -16,16 +16,14 @@ Route::get('/post', function () {
     return view('postagem');
 });
 
-
-Route::get('/projects', function () {
-    return view('projects');
-});
-
+//Controlador de posts
+Route::get('/editposts', [PostController::class, 'editPosts'])->middleware('auth');
 Route::get('/projects', [PostController::class, 'returnProjects']);
-
 Route::middleware(['auth'])->group(function () {
     Route::post('/post/newpost', [PostController::class, 'newPost'])->name('profile.newproject');
+    Route::delete('/post/deletepost/{postid}', [PostController::class, 'deletePost']);
 });
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
