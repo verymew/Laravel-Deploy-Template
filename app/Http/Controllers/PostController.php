@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use App\Models\User;
 use App\Models\activities;
+use App\Models\Team;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -58,8 +59,10 @@ class PostController extends Controller
 
     public function returnTeam()
     {
+        $students = Team::where('job','student')->get();
+        $professor = Team::where('job','professor')->get();
 
-        return view('team');
+        return view('team', compact('students', 'professor'));
     }
 
     //
@@ -144,5 +147,31 @@ class PostController extends Controller
     public function updateActivity()
     {
 
+    }
+
+    //rotas da equipe
+    public function createPartner(Request $request)
+    {
+        $request->validate([
+            'projname' => 'required|string|max:100',
+            'job' => 'required|string',
+            'projresume' =>'required|string|max: 100',
+            'image' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+        ]);
+
+        $imagePath = $request->file('image')->store('images', 'public');
+
+
+        $team = new Team([
+            'name' => $request->input('projname'),
+            'resume' => $request->input('projresume'),
+            'job' => $request->input('job'),
+            'image_path' => $imagePath,
+        ]);
+
+        $team->save();
+
+
+        return redirect('/team/registerpartner')->with('success', 'Integrante Registrado com sucesso!');
     }
 }

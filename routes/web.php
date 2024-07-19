@@ -20,6 +20,12 @@ Route::middleware(['auth'])->group(function (){
     Route::get('/activity/registeractivity', function () { return view('createactivity'); })->name('activity.registeractivity');
 });
 
+//Controlador de equipe
+Route::middleware(['auth'])->group(function () {
+    Route::get('/team/registerpartner', function () { return view('createpartner'); });
+    Route::post('/team/newpartner', [PostController::class, 'createPartner'])->name('team.createpartner');
+});
+
 //Controlador de projetos
 Route::middleware(['auth'])->group(function () {
     //get
