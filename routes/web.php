@@ -13,16 +13,21 @@ Route::get('/index', function () {
 Route::get('/projects', [PostController::class, 'returnProjects'])->name('projects');
 Route::get('/about', function () { return view('about'); } )->name('about');
 Route::get('/', [PostController::class, 'returnIndex'])->name('home');
+Route::get('/aboutus', [PostController::class, 'returnTeam'])->name('team');
 
+//Controlador de atividades
+Route::middleware(['auth'])->group(function (){
+    Route::get('/activity/registeractivity', function () { return view('createactivity'); })->name('activity.registeractivity');
+});
 
-//Controlador de posts
+//Controlador de projetos
 Route::middleware(['auth'])->group(function () {
     //get
     Route::get('/post/editposts', [PostController::class, 'editPosts'])->name('project.editPosts');
     Route::get('/updatepost/{postid}', [PostController::class, 'updatePostPage'])->name('project.seePost');
-    Route::get('/post', function () {
+    Route::get('/post/addproject', function () {
         return view('postagem');
-    });
+    })->name('project.addproject');
     //post
     Route::post('/post/newpost', [PostController::class, 'newPost'])->name('profile.newproject');
     //delete

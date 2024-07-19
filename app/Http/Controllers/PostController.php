@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use App\Models\User;
+use App\Models\activities;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -43,7 +44,7 @@ class PostController extends Controller
     public function returnIndex()
     {
         $projects = Post::limit(3)->get();
-        $activities = '';
+        $activities = activities::all();
 
         return view('home', compact('projects', 'activities'));
     }
@@ -55,8 +56,15 @@ class PostController extends Controller
         return view('projects', compact('projects'));
     }
 
+    public function returnTeam()
+    {
+
+        return view('team');
+    }
+
     //
 
+    //Editor de projetos
     public function editPosts(): View
     {
         $projects = Post::all();
@@ -114,6 +122,27 @@ class PostController extends Controller
         $findpost->save();
 
         return redirect('/post')->with('success', 'Projeto atualizado com sucesso!');
+
+    }
+
+    //
+    //Rotas de atividade
+    public function activityManage()
+    {
+
+    }
+
+    public function createActivity()
+    {
+
+    }
+    public function deleteActivity()
+    {
+
+    }
+
+    public function updateActivity()
+    {
 
     }
 }
