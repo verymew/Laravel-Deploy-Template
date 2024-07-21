@@ -35,7 +35,7 @@
 
             <div class="col-lg-4 col-md-6 d-flex align-self-stretch ftco-animate">
               <div class="media block-6 services d-flex">
-                <div class="media-body pl-4">
+                <div style="word-break: break-word !important;" class="media-body pl-4">
                   <h3 class="heading">{{ $projects->title }}</h3>
                   <p>{{ $projects->resume }}</p>
                   <p><a href="" class="btn btn-secondary px-4 py-3">Ver mais</a></p>

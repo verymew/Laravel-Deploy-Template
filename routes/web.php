@@ -14,15 +14,21 @@ Route::get('/projects', [PostController::class, 'returnProjects'])->name('projec
 Route::get('/about', function () { return view('about'); } )->name('about');
 Route::get('/', [PostController::class, 'returnIndex'])->name('home');
 Route::get('/aboutus', [PostController::class, 'returnTeam'])->name('team');
+Route::get('/projects/{postid}',[PostController::class, 'showSinglePost'])->name('showproject');
 
 //Controlador de atividades
 Route::middleware(['auth'])->group(function (){
     Route::get('/activity/registeractivity', function () { return view('createactivity'); })->name('activity.registeractivity');
+    Route::get('/activity/managment', [PostController::class, 'activityManagment'])->name('activity.managment');
+    Route::post('/activity/newactivity', [PostController::class, 'createActivity'])->name('activity.create');
+    Route::delete('/activity/deleteactivity/{activityid}', [PostController::class, 'deleteActivity'])->name('activity.delete');
 });
 
 //Controlador de equipe
 Route::middleware(['auth'])->group(function () {
-    Route::get('/team/registerpartner', function () { return view('createpartner'); });
+    Route::get('/team/registerpartner', function () { return view('createpartner'); })->name('team.pagepartner');
+    Route::get('/team/management', [PostController::class, 'teamManagement'])->name('team.management');
+    Route::delete('/team/deletepartner', [PostController::class, 'deletePartner'])->name('team.delete');
     Route::post('/team/newpartner', [PostController::class, 'createPartner'])->name('team.createpartner');
 });
 
@@ -35,7 +41,7 @@ Route::middleware(['auth'])->group(function () {
         return view('postagem');
     })->name('project.addproject');
     //post
-    Route::post('/post/newpost', [PostController::class, 'newPost'])->name('profile.newproject');
+    Route::post('/post/newpost', [PostController::class, 'newPost'])->name('project.newpost');
     //delete
     Route::delete('/post/deletepost/{postid}', [PostController::class, 'deletePost']);
     //put

@@ -10,6 +10,7 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redis;
 
 class PostController extends Controller
 {
@@ -37,7 +38,7 @@ class PostController extends Controller
 
         $user->posts()->save($post);
 
-        return redirect('/post')->with('success', 'Projeto criado com sucesso!');
+        return redirect('/post/addproject')->with('success', 'Projeto criado com sucesso!');
     }
 
     //Rotas públicas
@@ -68,6 +69,12 @@ class PostController extends Controller
     //
 
     //Editor de projetos
+    public function showSinglePost($postid)
+    {
+        $project = Post::find($postid);
+
+        return view('blogpost', compact('project'));
+    }
     public function editPosts(): View
     {
         $projects = Post::all();
@@ -124,30 +131,51 @@ class PostController extends Controller
 
         $findpost->save();
 
-        return redirect('/post')->with('success', 'Projeto atualizado com sucesso!');
+        return redirect('/post/editposts')->with('success', 'Projeto atualizado com sucesso!');
 
     }
 
     //
     //Rotas de atividade
-    public function activityManage()
+    public function activityManagment()
     {
+        $activities = activities::all();
+
+        return view('activitymanagment', compact('activities'));
+    }
+
+    public function createActivity(Request $request)
+    {
+        $request->validate(
+            [
+                'projresume' => 'required|string|max:100',
+                'event_day' => 'required|date',
+                'image' => 'required|image|mimes:jpeg,png,jpg|max:2048'
+            ]
+        );
+
+        $imagePath = $request->file('image')->store('images', 'public');
+
+        $activity = new activities([
+            'resume' => $request->input('projresume'),
+            'activity_date' => $request->input('event_day'),
+            'image_path' => $imagePath
+        ]);
+
+        $activity->save();
+
+        return redirect('/activity/registeractivity')->with('success', 'Atividade Registrada com sucesso!');
+    }
+
+    public function deleteActivity($postid)
+    {
+        $findactivity = activities::find($postid);
+        $findactivity->delete();
+
+        return response()->json(['message' => 'Atividade excluída com sucesso!'], 200);
 
     }
 
-    public function createActivity()
-    {
-
-    }
-    public function deleteActivity()
-    {
-
-    }
-
-    public function updateActivity()
-    {
-
-    }
 
     //rotas da equipe
     public function createPartner(Request $request)

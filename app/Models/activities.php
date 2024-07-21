@@ -10,8 +10,9 @@ class activities extends Model
     use HasFactory;
 
     protected $fillable = [
-        'title',
         'resume',
+        'activity_date',
+        'image_path',
     ];
 
 }

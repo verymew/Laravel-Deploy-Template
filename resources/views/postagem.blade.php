@@ -38,8 +38,9 @@
 @endif
 
 <div class="form-div" style="width: 100%; display: flex; justify-content: center;">
-    <form method="POST" action="{{ route('profile.newproject') }}" enctype="multipart/form-data" style="margin: 20px 20px;">
+    <form method="POST" action="{{ route('project.newpost') }}" enctype="multipart/form-data" style="margin: 20px 20px;">
       @csrf
+      @method('POST')
       <label for="fname">Nome do projeto:</label><br>
       <input type="text" name="projname">
       <br>
