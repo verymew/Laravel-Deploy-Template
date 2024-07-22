@@ -16,6 +16,7 @@ Route::get('/', [PostController::class, 'returnIndex'])->name('home');
 Route::get('/aboutus', [PostController::class, 'returnTeam'])->name('team');
 Route::get('/projects/{postid}',[PostController::class, 'showSinglePost'])->name('showproject');
 
+
 //Controlador de atividades
 Route::middleware(['auth'])->group(function (){
     Route::get('/activity/registeractivity', function () { return view('createactivity'); })->name('activity.registeractivity');
@@ -43,11 +44,16 @@ Route::middleware(['auth'])->group(function () {
     //post
     Route::post('/post/newpost', [PostController::class, 'newPost'])->name('project.newpost');
     //delete
-    Route::delete('/post/deletepost/{postid}', [PostController::class, 'deletePost']);
+    Route::delete('/post/deletepost/{postid}', [PostController::class, 'deletePost'])->name('project.delete');
     //put
     Route::put('/updatepost/put',[PostController::class, 'updatePost'])->name('project.updatePost');
 });
 
+//Rota de admnistração
+Route::middleware(['auth'])->group(function () {
+    Route::get('/admin', [PostController::class, 'adminManage'])->name('admin.home');
+    Route::get('/admin/newdata', function () { return view('newproject'); } )->name('admin.newproject');
+    });
 
 Route::get('/dashboard', function () {
     return view('dashboard');

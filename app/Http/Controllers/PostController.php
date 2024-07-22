@@ -38,7 +38,17 @@ class PostController extends Controller
 
         $user->posts()->save($post);
 
-        return redirect('/post/addproject')->with('success', 'Projeto criado com sucesso!');
+        return redirect('/admin/newdata')->with('success', 'Projeto criado com sucesso!');
+    }
+
+    //Rota do admin
+    public function adminManage()
+    {
+        $projects = Post::all();
+        $activities = activities::all();
+        $team = Team::all();
+
+        return view('adminpage', compact('projects', 'activities', 'team'));
     }
 
     //Rotas públicas
@@ -173,9 +183,7 @@ class PostController extends Controller
         $findactivity->delete();
 
         return response()->json(['message' => 'Atividade excluída com sucesso!'], 200);
-
     }
-
 
     //rotas da equipe
     public function createPartner(Request $request)

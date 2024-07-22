@@ -10,7 +10,7 @@ class Team extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name',
+        'title',
         'resume',
         'job',
         'image_path',
