@@ -6,24 +6,24 @@
     </h2>
     <br>
     <h1 style="text-decoration: solid">Projetos:</h1><br>
-    <a href="{{ route('project.addproject') }}" class="buttonespe" >Novo Projeto</a><br>
-    <a href="{{ route('project.editPosts') }}" class="buttonespe" >Gerenciar Projetos</a><br>
+    <a href="{{ route('project.addproject') }}" class="button" >Novo Projeto</a><br>
+    <a href="{{ route('project.editPosts') }}" class="button" >Gerenciar Projetos</a><br>
     <h1 style="text-decoration: solid">Atividades:</h1><br>
-    <a href="{{ route('activity.registeractivity') }}" class="buttonespe">Nova Atividade</a><br>
-    <a href="" class="buttonespe">Gerenciar Atividades</a><br>
+    <a href="{{ route('activity.registeractivity') }}" class="button">Nova Atividade</a><br>
+    <a href="{{ route('activity.managment') }}" class="button">Gerenciar Atividades</a><br>
     <h1 style="text-decoration: solid">Equipe:</h1><br>
-    <a href="" class="buttonespe">Adicionar integrante</a><br>
-    <a href="" class="buttonespe" >Gerenciar Equipe</a><br>
+    <a href="{{ route('team.pagepartner') }}" class="button">Adicionar integrante</a><br>
+    <a href="" class="button" >Gerenciar Equipe</a><br>
 </div>
 
 
 
 <style>
-.principalmanagetable
+.principal
 {
     display: grid;
 }
-.buttonespe {
+.button{
  appearance: none;
  background-color: transparent;
  border: 0.125em solid #1A1A1A;
@@ -50,18 +50,18 @@
  will-change: transform;
 }
 
-.buttonespe:disabled {
+.button:disabled {
  pointer-events: none;
 }
 
-.buttonespe:hover {
+.button:hover {
  color: #fff;
  background-color: #1A1A1A;
  box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
  transform: translateY(-2px);
 }
 
-.buttonespe:active {
+.button:active {
  box-shadow: none;
  transform: translateY(0);
 }

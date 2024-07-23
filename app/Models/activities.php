@@ -11,7 +11,8 @@ class activities extends Model
 
     protected $fillable = [
         'title',
-        'resume',
+        'activity_date',
+        'image_path',
     ];
 
 }

@@ -1,0 +1,25 @@
+.adminpage
+{
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.admincard
+{
+    width: 50%;
+}
+
+body, html {
+    margin: 0;
+
+}
+
+@media(max-width: 1530px)
+{
+    .admincard
+    {
+    }
+}

@@ -24,7 +24,23 @@
     }
 </style>
 
-@if ($projects)
+@if (session('success'))
+<div class="alert alert-success" style="text-align: center">
+    {{ session('success') }}
+</div>
+@endif
+
+
+@if ($errors->any())
+<div class="alert alert-danger">
+    <ul>
+        @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+        @endforeach
+    </ul>
+</div>
+@endif
+
     @foreach ($projects as $projects)
     <div class="listofposts">
         <ol id="listinside" class="list-group list-group-numbered">
@@ -41,5 +57,4 @@
         </ol>
     </div>
     @endforeach
-@endif
 

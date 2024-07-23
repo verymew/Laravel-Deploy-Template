@@ -10,6 +10,7 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redis;
 
 class PostController extends Controller
 {
@@ -37,7 +38,17 @@ class PostController extends Controller
 
         $user->posts()->save($post);
 
-        return redirect('/post')->with('success', 'Projeto criado com sucesso!');
+        return redirect('/admin/newdata')->with('success', 'Projeto criado com sucesso!');
+    }
+
+    //Rota do admin
+    public function adminManage()
+    {
+        $projects = Post::all();
+        $activities = activities::all();
+        $team = Team::all();
+
+        return view('adminpage', compact('projects', 'activities', 'team'));
     }
 
     //Rotas públicas
@@ -68,11 +79,17 @@ class PostController extends Controller
     //
 
     //Editor de projetos
-    public function editPosts(): View
+    public function showSinglePost($postid)
     {
-        $projects = Post::all();
+        $project = Post::find($postid);
 
-        return view('editpost', compact('projects'));
+        return view('blogpost', compact('project'));
+    }
+    public function editPosts($idpost): View
+    {
+        $projects = Post::find($idpost);
+
+        return view('editproject', compact('projects'));
     }
 
     public function deletePost($postid)
@@ -80,7 +97,7 @@ class PostController extends Controller
         $findpost = Post::find($postid);
         $findpost->delete();
 
-        return response()->json(['message' => 'Postagem excluída com sucesso!'], 200);
+        return redirect(route('admin.home'))->with('success', 'Projeto atualizado com sucesso!');
     }
 
     public function updatePostPage($postid)
@@ -124,29 +141,48 @@ class PostController extends Controller
 
         $findpost->save();
 
-        return redirect('/post')->with('success', 'Projeto atualizado com sucesso!');
+        return redirect(route('project.editPosts', $postid))->with('success', 'Projeto atualizado com sucesso!');
 
     }
 
     //
     //Rotas de atividade
-    public function activityManage()
+    public function activityManagment()
     {
+        $activities = activities::all();
 
+        return view('activitymanagment', compact('activities'));
     }
 
-    public function createActivity()
+    public function createActivity(Request $request)
     {
+        $request->validate(
+            [
+                'projresume' => 'required|string|max:100',
+                'event_day' => 'required|date',
+                'image' => 'required|image|mimes:jpeg,png,jpg|max:2048'
+            ]
+        );
 
+        $imagePath = $request->file('image')->store('images', 'public');
+
+        $activity = new activities([
+            'resume' => $request->input('projresume'),
+            'activity_date' => $request->input('event_day'),
+            'image_path' => $imagePath
+        ]);
+
+        $activity->save();
+
+        return redirect('/activity/registeractivity')->with('success', 'Atividade Registrada com sucesso!');
     }
-    public function deleteActivity()
+
+    public function deleteActivity($postid)
     {
+        $findactivity = activities::find($postid);
+        $findactivity->delete();
 
-    }
-
-    public function updateActivity()
-    {
-
+        return response()->json(['message' => 'Atividade excluída com sucesso!'], 200);
     }
 
     //rotas da equipe

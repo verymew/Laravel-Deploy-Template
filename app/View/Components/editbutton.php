@@ -6,15 +6,14 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class deleteButton extends Component
+class editbutton extends Component
 {
-    public $postId;
-    public $message;
-
-    public function __construct($postId, $message)
+    /**
+     * Create a new component instance.
+     */
+    public function __construct()
     {
-        $this->postId = $postId;
-        $this->$message = $message;
+        //
     }
 
     /**
@@ -22,6 +21,6 @@ class deleteButton extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.delete-button');
+        return view('components.editbutton');
     }
 }
