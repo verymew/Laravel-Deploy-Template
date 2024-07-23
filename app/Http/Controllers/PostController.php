@@ -85,11 +85,11 @@ class PostController extends Controller
 
         return view('blogpost', compact('project'));
     }
-    public function editPosts(): View
+    public function editPosts($idpost): View
     {
-        $projects = Post::all();
+        $projects = Post::find($idpost);
 
-        return view('editpost', compact('projects'));
+        return view('editproject', compact('projects'));
     }
 
     public function deletePost($postid)
@@ -97,7 +97,7 @@ class PostController extends Controller
         $findpost = Post::find($postid);
         $findpost->delete();
 
-        return response()->json(['message' => 'Postagem excluída com sucesso!'], 200);
+        return redirect(route('admin.home'))->with('success', 'Projeto atualizado com sucesso!');
     }
 
     public function updatePostPage($postid)
@@ -141,7 +141,7 @@ class PostController extends Controller
 
         $findpost->save();
 
-        return redirect('/post/editposts')->with('success', 'Projeto atualizado com sucesso!');
+        return redirect(route('project.editPosts', $postid))->with('success', 'Projeto atualizado com sucesso!');
 
     }
 

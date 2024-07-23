@@ -36,8 +36,7 @@ Route::middleware(['auth'])->group(function () {
 //Controlador de projetos
 Route::middleware(['auth'])->group(function () {
     //get
-    Route::get('/post/editposts', [PostController::class, 'editPosts'])->name('project.editPosts');
-    Route::get('/updatepost/{postid}', [PostController::class, 'updatePostPage'])->name('project.seePost');
+    Route::get('/post/editposts/{postid}', [PostController::class, 'editPosts'])->name('project.editPosts');
     Route::get('/post/addproject', function () {
         return view('postagem');
     })->name('project.addproject');

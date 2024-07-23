@@ -22,6 +22,13 @@
                 <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel"
                     aria-labelledby="v-pills-home-tab" tabindex="0">
 
+                    <x-adminmanage route=" 'admin.home ' " :items='$activities'>
+                        <x-slot:title>
+                        Atividades
+                        </x-slot>
+                        <strong>Gerenciar Atividades:</strong>
+                    </x-adminmanage>
+
 
                 </div>
 

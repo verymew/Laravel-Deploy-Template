@@ -1,8 +1,8 @@
 
 
-<div style="text-align:center;">
+<div style="text-align:center; margin: 10px 10px;">
     <span><strong>Novo(a) {{ $title }}: </strong></span><br><br>
-    <button onclick="window.location.href='{{ route('admin.newproject') }}'" type="button" class="btn btn-success">Criar {{$title}}</button><br><br>
+    <button onclick="window.location.href='{{ route({{$route}}) }}'" type="button" class="btn btn-success">Criar {{$title}}</button><br><br>
     <span>{{ $slot }} </span><br><br>
 </div>
 
@@ -11,8 +11,8 @@
     @foreach ($items as $items)
             <li class="list-group-item">
                 <p>{{ $items->title }}</p>
-                <button style="margin: 10px 10px;" onclick="window.location.href='{{ route('project.seePost', $items->id) }}'" type="button" class="btn btn-warning">Editar</button>
-                <x-delete-button message="oiiii" :postid="$items->id" />
+                <button style="margin: 10px 10px;" onclick="window.location.href='{{ route('project.editPosts', $items->id) }}'" type="button" class="btn btn-warning">Editar</button>
+                <x-delete-button message="Tem certeza que deseja excluir o conteúdo?" :postid="$items->id" />
             </li>
     @endforeach
 </ul>
@@ -41,5 +41,15 @@
 {
     display: flex;
     align-items: center;
+}
+
+@media(max-width: 680px)
+{
+    .list-group p
+{
+    width: 100px;
+    margin: 10px 10px;
+    overflow-wrap: break-word;
+}
 }
 </style>
