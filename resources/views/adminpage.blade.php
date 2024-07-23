@@ -50,7 +50,7 @@
                 <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab"
                     tabindex="0">
 
-                    <x-adminmanage route="admin.newproject" :items='$team'>
+                    <x-adminmanage route="team.pagepartner" :items='$team'>
                         <x-slot:title>
                         Equipe
                         </x-slot>

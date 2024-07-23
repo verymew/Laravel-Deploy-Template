@@ -50,7 +50,7 @@
                             </div>
                         </div>
                         <div class="text pt-3 px-3 pb-4 text-center">
-                            <h3>{{ $students->name }}</h3>
+                            <h3>{{ $students->title }}</h3>
                             <span class="position mb-2">Estudante</span>
                             <div class="faded">
                                 <p>{{ $students->resume }}</p>

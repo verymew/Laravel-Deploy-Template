@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('activities', function (Blueprint $table) {
             $table->id();
-            $table->text('title');
+            $table->text('resume');
+            $table->string('title');
             $table->date('activity_date');
             $table->string('image_path');
             $table->timestamps();

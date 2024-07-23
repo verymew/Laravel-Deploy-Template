@@ -158,6 +158,7 @@ class PostController extends Controller
     {
         $request->validate(
             [
+                'projname' => 'required|string| max: 100',
                 'projresume' => 'required|string|max:100',
                 'event_day' => 'required|date',
                 'image' => 'required|image|mimes:jpeg,png,jpg|max:2048'
@@ -167,6 +168,7 @@ class PostController extends Controller
         $imagePath = $request->file('image')->store('images', 'public');
 
         $activity = new activities([
+            'title' => $request->input('projname'),
             'resume' => $request->input('projresume'),
             'activity_date' => $request->input('event_day'),
             'image_path' => $imagePath
@@ -199,7 +201,7 @@ class PostController extends Controller
 
 
         $team = new Team([
-            'name' => $request->input('projname'),
+            'title' => $request->input('projname'),
             'resume' => $request->input('projresume'),
             'job' => $request->input('job'),
             'image_path' => $imagePath,
