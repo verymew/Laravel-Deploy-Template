@@ -22,11 +22,13 @@
                 <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel"
                     aria-labelledby="v-pills-home-tab" tabindex="0">
 
-                    <x-adminmanage route=" 'admin.home ' " :items='$activities'>
+                    <x-adminmanage route="activity.registeractivity" :items='$activities'>
                         <x-slot:title>
                         Atividades
                         </x-slot>
-                        <strong>Gerenciar Atividades:</strong>
+                        <x-slot:secondtitle>
+                            <strong>Gerenciar Atividades:</strong>
+                        </x-slot:secondtitle>
                     </x-adminmanage>
 
 
@@ -35,16 +37,27 @@
                 <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab"
                     tabindex="0">
 
-                    <x-adminmanage route=" 'fsfsfdd ' " :items='$projects'>
+                    <x-adminmanage route="admin.newproject" :items='$projects'>
                         <x-slot:title>
                         Projeto
                         </x-slot>
-                        <strong>Gerenciar Projetos:</strong>
+                        <x-slot:secondtitle>
+                            <strong>Gerenciar Projetos:</strong>
+                        </x-slot:secondtitle>
                     </x-adminmanage>
 
                 </div>
                 <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab"
                     tabindex="0">
+
+                    <x-adminmanage route="admin.newproject" :items='$team'>
+                        <x-slot:title>
+                        Equipe
+                        </x-slot>
+                        <x-slot:secondtitle>
+                            <strong>Gerenciar Equipe:</strong>
+                        </x-slot:secondtitle>
+                    </x-adminmanage>
 
 
                 </div>
