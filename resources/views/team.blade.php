@@ -20,7 +20,7 @@
                             </div>
                         </div>
                         <div class="text pt-3 px-3 pb-4 text-center">
-                            <h3>{{ $professor->name }}</h3>
+                            <h3>{{ $professor->title }}</h3>
                             <span class="position mb-2">Docente</span>
                             <div class="faded">
                                 <p>{{ $professor->resume }}</p>
@@ -36,7 +36,7 @@
 
 <section class="ftco-section bg-light">
     <div style="text-align: center;">
-        <h1>Alunos</h1>
+        <h1>Dicentes</h1>
         <br>
     </div>
     <div class="container">

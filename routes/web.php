@@ -16,7 +16,6 @@ Route::get('/', [PostController::class, 'returnIndex'])->name('home');
 Route::get('/aboutus', [PostController::class, 'returnTeam'])->name('team');
 Route::get('/projects/{postid}',[PostController::class, 'showSinglePost'])->name('showproject');
 
-
 //Controlador de atividades
 Route::middleware(['auth'])->group(function (){
     Route::get('/activity/registeractivity', function () { return view('createactivity'); })->name('activity.registeractivity');
@@ -35,24 +34,17 @@ Route::middleware(['auth'])->group(function () {
 
 //Controlador de projetos
 Route::middleware(['auth'])->group(function () {
-    //get
     Route::get('/post/editposts/{postid}', [PostController::class, 'editPosts'])->name('project.editPosts');
-    Route::get('/post/addproject', function () {
-        return view('postagem');
-    })->name('project.addproject');
-    //post
     Route::post('/post/newpost', [PostController::class, 'newPost'])->name('project.newpost');
-    //delete
     Route::delete('/post/deletepost/{postid}', [PostController::class, 'deletePost'])->name('project.delete');
-    //put
     Route::put('/updatepost/put',[PostController::class, 'updatePost'])->name('project.updatePost');
 });
 
-//Rota de admnistração
+//Rota de administração
 Route::middleware(['auth'])->group(function () {
     Route::get('/admin', [PostController::class, 'adminManage'])->name('admin.home');
     Route::get('/admin/newdata', function () { return view('newproject'); } )->name('admin.newproject');
-    });
+});
 
 Route::get('/dashboard', function () {
     return view('dashboard');

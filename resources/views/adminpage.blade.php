@@ -62,7 +62,13 @@
 
                 </div>
                 <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab"
-                    tabindex="0">...</div>
+                    tabindex="0">
+
+                <div style="width: 200px; margin: 20px 0px;">
+                    <button  onclick="window.location.href='/profile'" type="button" class="btn btn-secondary">Configurar Conta</button>
+                </div>
+
+                </div>
             </div>
         </div>
     </div>
