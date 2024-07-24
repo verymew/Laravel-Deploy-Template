@@ -211,6 +211,36 @@ class PostController extends Controller
     }
 
     //rotas da equipe
+    public function editPartner($partnerid)
+    {
+        $partner = Team::find($partnerid);
+
+        return view('editpartner', compact('partner'));
+    }
+
+    public function putPartner(Request $request)
+    {
+        $request->validate([
+            'projname' => 'required|string|max:100',
+            'job' => 'required|string',
+            'projresume' =>'required|string|max: 100',
+            'image' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+        ]);
+
+        $imagePath = $request->file('image')->store('images', 'public');
+
+        $team = new Team([
+            'title' => $request->input('projname'),
+            'resume' => $request->input('projresume'),
+            'job' => $request->input('job'),
+            'image_path' => $imagePath,
+        ]);
+
+        $team->save();
+
+        return redirect('/team/registerpartner')->with('success', 'Integrante Registrado com sucesso!');
+    }
+
     public function createPartner(Request $request)
     {
         $request->validate([

@@ -39,7 +39,7 @@
                     <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab"
                         tabindex="0">
 
-                        <x-adminmanage editroute="project.editPosts" route="team.pagepartner" :items='$team'>
+                        <x-adminmanage editroute="team.edit" route="team.pagepartner" :items='$team'>
                             <x-slot:title>Equipe</x-slot>
                             <x-slot:secondtitle><strong>Gerenciar Equipe:</strong></x-slot:secondtitle>
                         </x-adminmanage>
