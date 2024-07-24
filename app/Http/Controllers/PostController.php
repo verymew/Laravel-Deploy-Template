@@ -147,13 +147,6 @@ class PostController extends Controller
 
     //
     //Rotas de atividade
-    public function activityManagment()
-    {
-        $activities = activities::all();
-
-        return view('activitymanagment', compact('activities'));
-    }
-
     public function createActivity(Request $request)
     {
         $request->validate(
@@ -183,8 +176,38 @@ class PostController extends Controller
     {
         $findactivity = activities::find($postid);
         $findactivity->delete();
-
         return response()->json(['message' => 'Atividade excluída com sucesso!'], 200);
+    }
+
+    public function editActivity($activityid)
+    {
+        $activity = activities::find($activityid);
+        return view('editactivity', compact('activity'));
+    }
+
+    public function putActivity(Request $request)
+    {
+        $request->validate(
+            [
+                'projname' => 'required|string| max: 100',
+                'projresume' => 'required|string|max:100',
+                'event_day' => 'required|date',
+                'image' => 'required|image|mimes:jpeg,png,jpg|max:2048'
+            ]
+        );
+
+        $imagePath = $request->file('image')->store('images', 'public');
+
+        $activity = new activities([
+            'title' => $request->input('projname'),
+            'resume' => $request->input('projresume'),
+            'activity_date' => $request->input('event_day'),
+            'image_path' => $imagePath
+        ]);
+
+        $activity->save();
+
+        return redirect('/activity/registeractivity')->with('success', 'Atividade Registrada com sucesso!');
     }
 
     //rotas da equipe

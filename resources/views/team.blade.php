@@ -16,8 +16,8 @@
                 <div class="col-md-6 col-lg-3 ftco-animate">
                     <div class="staff">
                         <div class="img-wrap d-flex align-items-stretch">
-                            <img class="img align-self-stretch" src="{{ asset('storage/' . $professor->image_path) }}" alt="Imagem do Post">
-                            </div>
+                            <div class="img align-self-stretch" style="background-image: url({{ asset('storage/' . $professor->image_path) }});"></div>
+                        </div>
                         </div>
                         <div class="text pt-3 px-3 pb-4 text-center">
                             <h3>{{ $professor->title }}</h3>
@@ -46,8 +46,8 @@
                 <div class="col-md-6 col-lg-3 ftco-animate">
                     <div class="staff">
                         <div class="img-wrap d-flex align-items-stretch">
-                            <img class="img align-self-stretch" src="{{ asset('storage/' . $students->image_path) }}" alt="Imagem do Post">
-                            </div>
+                            <div class="img align-self-stretch" style="background-image: url({{ asset('storage/' . $students->image_path) }});"></div>
+                        </div>
                         </div>
                         <div class="text pt-3 px-3 pb-4 text-center">
                             <h3>{{ $students->title }}</h3>

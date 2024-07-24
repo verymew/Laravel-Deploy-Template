@@ -22,6 +22,9 @@ Route::middleware(['auth'])->group(function (){
     Route::get('/activity/managment', [PostController::class, 'activityManagment'])->name('activity.managment');
     Route::post('/activity/newactivity', [PostController::class, 'createActivity'])->name('activity.create');
     Route::delete('/activity/deleteactivity/{activityid}', [PostController::class, 'deleteActivity'])->name('activity.delete');
+    Route::get('/activity/edit/{activityid}', [PostController::class, 'editActivity'])->name('activity.edit');
+    Route::put('/activity/put', [PostController::class, 'putActivity'])->name('activity.put');
+
 });
 
 //Controlador de equipe
@@ -30,6 +33,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/team/management', [PostController::class, 'teamManagement'])->name('team.management');
     Route::delete('/team/deletepartner', [PostController::class, 'deletePartner'])->name('team.delete');
     Route::post('/team/newpartner', [PostController::class, 'createPartner'])->name('team.createpartner');
+    Route::put('/team/edit', [PostController::class])->name('team.edit');
 });
 
 //Controlador de projetos

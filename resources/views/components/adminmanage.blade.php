@@ -1,6 +1,6 @@
 
 
-@props(['title', 'route', 'secondtitle', 'items'])
+@props(['editroute','title', 'route', 'secondtitle', 'items'])
 
 <div style="text-align:center; margin: 10px 10px;">
     <span><strong>Novo(a) {{ $title }}: </strong></span><br><br>
@@ -12,7 +12,7 @@
     @foreach ($items as $item)
         <li class="list-group-item">
             <p>{{ $item->title }}</p>
-            <button style="margin: 10px 10px;" onclick="window.location.href='{{ route('project.editPosts', $item->id) }}'" type="button" class="btn btn-warning">Editar</button>
+            <button style="margin: 10px 10px;" onclick="window.location.href='{{ route($editroute, $item->id) }}'" type="button" class="btn btn-warning">Editar</button>
             <x-delete-button message="Tem certeza que deseja excluir o conteúdo?" :postid="$item->id" />
         </li>
     @endforeach
