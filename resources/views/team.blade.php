@@ -36,7 +36,7 @@
 
 <section class="ftco-section bg-light">
     <div style="text-align: center;">
-        <h1>Dicentes</h1>
+        <h1>Bolsistas</h1>
         <br>
     </div>
     <div class="container">

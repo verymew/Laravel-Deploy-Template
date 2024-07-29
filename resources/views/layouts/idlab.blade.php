@@ -23,11 +23,11 @@
       </button>
       <div class="collapse navbar-collapse" id="ftco-nav">
         <ul class="navbar-nav ml-auto">
-          <li class="nav-item"><a href="contact.html" class="nav-link">Contato</a></li>
-          <li class="nav-item"><a href="{{ route('team') }}" class="nav-link">Quem somos</a></li>
-          <li class="nav-item"><a class="nav-link" href="{{ route('projects') }}">Projetos</a></li>
           <li class="nav-item active"><a href="{{ route('home') }}" class="nav-link">Início</a></li>
-          <li class="nav-item cta"><a href="{{ route('about') }}" class="nav-link"><span>Sobre o Laboratório</span></a></li>
+          <li class="nav-item"><a class="nav-link" href="{{ route('projects') }}">Projetos</a></li>
+          <li class="nav-item"><a href="{{ route('team') }}" class="nav-link">Quem somos</a></li>
+          <li class="nav-item"><a href="contact.html" class="nav-link">Contato</a></li>
+          <li class="nav-item"><a href="{{ route('about') }}" class="nav-link"><span>Sobre</span></a></li>
         </ul>
       </div>
     </div>
@@ -54,9 +54,9 @@
             <h2 class="ftco-heading-2">Links</h2>
             <ul class="list-unstyled">
               <li><a href="contact.html" class="py-2 d-block">Contato</a></li>
-              <li><a href="leadership.html" class="py-2 d-block">Quem somos</a></li>
-              <li><a href="about.html" class="py-2 d-block">Saiba mais</a></li>
-              <li><a href="blog.html" class="py-2 d-block">Projetos</a></li>
+              <li><a href="{{ route('team') }}" class="py-2 d-block">Quem somos</a></li>
+              <li><a href="{{ route('about') }}" class="py-2 d-block">Saiba mais</a></li>
+              <li><a href="{{ route('projects') }}" class="py-2 d-block">Projetos</a></li>
             </ul>
           </div>
         </div>
