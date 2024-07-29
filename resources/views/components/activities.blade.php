@@ -10,7 +10,7 @@
 
         <div class="col-md-4 ftco-animate">
             <div class="blog-entry" data-aos-delay="200">
-              <a href="blog-single.html" class="block-20" style="background-image: url('images/image_3.jpg');">
+              <a href="blog-single.html" class="block-20" style="background-image: url('{{ asset('storage/' . $activities->image_path) }}');">
               </a>
               <div class="text d-flex py-4">
                 <div class="meta mb-3">
