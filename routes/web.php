@@ -15,6 +15,8 @@ Route::get('/about', function () { return view('about'); } )->name('about');
 Route::get('/', [PostController::class, 'returnIndex'])->name('home');
 Route::get('/aboutus', [PostController::class, 'returnTeam'])->name('team');
 Route::get('/projects/{postid}',[PostController::class, 'showSinglePost'])->name('showproject');
+//Contato
+Route::get('/contact', function () {return view('contact');} )->name('contact');
 
 //Controlador de atividades
 Route::middleware(['auth'])->group(function (){
@@ -30,9 +32,9 @@ Route::middleware(['auth'])->group(function (){
 Route::middleware(['auth'])->group(function () {
     Route::get('/team/registerpartner', function () { return view('createpartner'); })->name('team.pagepartner');
     Route::get('/team/editpartner/{partnerid}', [PostController::class, 'editPartner'])->name('team.edit');
-    Route::delete('/team/deletepartner', [PostController::class, 'deletePartner'])->name('team.delete');
+    Route::delete('/team/deletepartner/{partnerid}', [PostController::class, 'deletePartner'])->name('team.delete');
     Route::post('/team/newpartner', [PostController::class, 'createPartner'])->name('team.createpartner');
-    Route::put('/team/put', [PostController::class], 'putParner')->name('team.put');
+    Route::put('/team/put', [PostController::class, 'putPartner'])->name('team.put');
 });
 
 //Controlador de projetos

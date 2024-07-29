@@ -20,7 +20,7 @@
                 <div class="tab-content" id="v-pills-tabContent">
                     <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab" tabindex="0">
 
-                        <x-adminmanage editroute="activity.edit" route="activity.registeractivity" :items='$activities'>
+                        <x-adminmanage deleteroute="activity.delete" editroute="activity.edit" route="activity.registeractivity" :items='$activities'>
                             <x-slot:title>Atividades</x-slot>
                             <x-slot:secondtitle><strong>Gerenciar Atividades:</strong></x-slot:secondtitle>
                         </x-adminmanage>
@@ -30,7 +30,7 @@
                     <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab"
                         tabindex="0">
 
-                        <x-adminmanage editroute="project.editPosts" route="admin.newproject" :items='$projects'>
+                        <x-adminmanage deleteroute="project.delete" editroute="project.editPosts" route="admin.newproject" :items='$projects'>
                             <x-slot:title>Projeto</x-slot>
                             <x-slot:secondtitle><strong>Gerenciar Projetos:</strong></x-slot:secondtitle>
                         </x-adminmanage>
@@ -39,7 +39,7 @@
                     <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab"
                         tabindex="0">
 
-                        <x-adminmanage editroute="team.edit" route="team.pagepartner" :items='$team'>
+                        <x-adminmanage deleteroute="team.delete" editroute="team.edit" route="team.pagepartner" :items='$team'>
                             <x-slot:title>Equipe</x-slot>
                             <x-slot:secondtitle><strong>Gerenciar Equipe:</strong></x-slot:secondtitle>
                         </x-adminmanage>

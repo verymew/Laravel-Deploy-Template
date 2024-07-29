@@ -95,7 +95,9 @@ class PostController extends Controller
     public function deletePost($postid)
     {
         $findpost = Post::find($postid);
-        $findpost->delete();
+        if ($findpost) {
+            $findpost->delete();
+        }
 
         return redirect(route('admin.home'))->with('success', 'Projeto atualizado com sucesso!');
     }
@@ -176,7 +178,7 @@ class PostController extends Controller
     {
         $findactivity = activities::find($postid);
         $findactivity->delete();
-        return response()->json(['message' => 'Atividade excluída com sucesso!'], 200);
+        return redirect(route('admin.home'));
     }
 
     public function editActivity($activityid)
@@ -207,10 +209,20 @@ class PostController extends Controller
 
         $activity->save();
 
-        return redirect('/activity/registeractivity')->with('success', 'Atividade Registrada com sucesso!');
+        return redirect('/activity/registeractivity')->with('success', 'Atividade editada com sucesso!');
     }
 
     //rotas da equipe
+    public function deletePartner($partnerid)
+    {
+        $findpartner = Team::find($partnerid);
+        if($findpartner)
+        {
+            $findpartner->delete();
+        }
+        return redirect(route('admin.home'));
+    }
+
     public function editPartner($partnerid)
     {
         $partner = Team::find($partnerid);
@@ -238,7 +250,7 @@ class PostController extends Controller
 
         $team->save();
 
-        return redirect('/team/registerpartner')->with('success', 'Integrante Registrado com sucesso!');
+        return redirect('/team/registerpartner')->with('success', 'Integrante editado com sucesso!');
     }
 
     public function createPartner(Request $request)
