@@ -4,11 +4,6 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 
-
-Route::get('/index', function () {
-    return view('welcome');
-});
-
 //páginas publicas
 Route::get('/projects', [PostController::class, 'returnProjects'])->name('projects');
 Route::get('/about', function () { return view('about'); } )->name('about');
