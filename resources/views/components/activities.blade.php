@@ -10,12 +10,12 @@
 
         <div class="col-md-4 ftco-animate">
             <div class="blog-entry" data-aos-delay="200">
-              <a href="blog-single.html" class="block-20" style="background-image: url('{{ asset('storage/' . $activities->image_path) }}');">
+              <a class="block-20" style="background-image: url('{{ asset('storage/' . $activities->image_path) }}');">
               </a>
               <div class="text d-flex py-4">
                 <div class="meta mb-3">
-                  <div><a href="#">May 17, 2020</a></div>
-                  <div><a href="#">Admin</a></div>
+                  <div><a>Data:</a></div>
+                  <div><a>{{ \Carbon\Carbon::parse($activities->activity_date)->format('d/m/Y') }}</a></div>
                 </div>
                 <div class="desc pl-3">
                     <h3 class="heading"><a href="#">{{ $activities->title }}</a></h3>
